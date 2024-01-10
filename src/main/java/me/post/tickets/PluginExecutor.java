@@ -63,6 +63,7 @@ public class PluginExecutor {
             new ManageTicketsCommand(),
             new CreateTicketCommand(ticketRepository),
             new TicketInfoCommand(ticketRepository),
+            new CloseTicketCommand(ticketRepository),
             new ReloadCommand(configManager, updatables),
             new HelpCommand()
         );
