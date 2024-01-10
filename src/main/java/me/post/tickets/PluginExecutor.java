@@ -1,5 +1,6 @@
 package me.post.tickets;
 
+import me.post.tickets.command.CreateTicketCommand;
 import me.post.tickets.command.HelpCommand;
 import me.post.tickets.command.ManageTicketsCommand;
 import me.post.tickets.command.ReloadCommand;
@@ -8,14 +9,12 @@ import me.post.configlib.config.model.MenuModel;
 import me.post.configlib.config.model.impl.FullReadMenuModel;
 import me.post.lib.config.wrapper.ConfigManager;
 import me.post.lib.config.wrapper.YamlConfigManager;
-import me.post.lib.util.Scheduler;
 import me.post.tickets.database.TicketRepository;
 import me.post.tickets.database.impl.CachedTicketRepository;
 import me.post.tickets.view.ManageTicketsView;
 import org.jetbrains.annotations.NotNull;
 import me.post.lib.command.process.CommandRegistry;
 import me.post.lib.view.Views;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
@@ -65,6 +64,7 @@ public class PluginExecutor {
 
         registry.addModules(
             new ManageTicketsCommand(),
+            new CreateTicketCommand(ticketRepository),
             new ReloadCommand(configManager, updatables),
             new HelpCommand()
         );
