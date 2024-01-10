@@ -8,6 +8,8 @@ import me.post.configlib.config.model.impl.FullReadMenuModel;
 import me.post.lib.config.wrapper.ConfigManager;
 import me.post.lib.config.wrapper.YamlConfigManager;
 import me.post.lib.util.Scheduler;
+import me.post.tickets.database.TicketRepository;
+import me.post.tickets.database.impl.CachedTicketRepository;
 import org.jetbrains.annotations.NotNull;
 import me.post.lib.command.process.CommandRegistry;
 import me.post.lib.view.Views;
@@ -21,12 +23,16 @@ public class PluginExecutor {
     private final @NotNull ConfigManager configManager;
     private final @NotNull Updatables updatables;
 
+    private final @NotNull TicketRepository ticketRepository;
+
     public PluginExecutor(@NotNull JavaPlugin plugin) {
         this.plugin = plugin;
         configManager = new YamlConfigManager(plugin);
         loadConfiguration();
 
         updatables = new Updatables();
+
+        ticketRepository = new CachedTicketRepository();
     }
 
     private void loadConfiguration() {
