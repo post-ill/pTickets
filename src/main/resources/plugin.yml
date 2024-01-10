@@ -1,0 +1,6 @@
+name: pTickets
+main: me.post.tickets.pTickets
+version: 1.0
+author: PostIll
+api-version: 1.8
+depend: [PostConfigLib]
