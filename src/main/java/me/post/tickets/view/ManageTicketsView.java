@@ -91,7 +91,7 @@ public class ManageTicketsView extends ContextView {
                     }
 
                     if (click.clickType() == ClickType.RIGHT) {
-                        ticketRepository.removerTicket(ticket);
+                        ticketRepository.removeTicket(ticket);
                         Views.get().open(player, ManageTicketsView.class);
                         respond(player, "Ticket-removido", message -> message.replace(
                             to("@jogador", currentTicket.author())

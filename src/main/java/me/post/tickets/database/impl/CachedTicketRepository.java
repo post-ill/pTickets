@@ -18,7 +18,7 @@ public class CachedTicketRepository implements TicketRepository {
     }
 
     @Override
-    public void removerTicket(@NotNull Ticket ticket) {
+    public void removeTicket(@NotNull Ticket ticket) {
         tickets.remove(ticket);
     }
 

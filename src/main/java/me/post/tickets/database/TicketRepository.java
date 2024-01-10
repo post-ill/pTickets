@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 public interface TicketRepository {
     void addTicket(@NotNull Ticket ticket);
 
-    void removerTicket(@NotNull Ticket ticket);
+    void removeTicket(@NotNull Ticket ticket);
 
     @NotNull Collection<Ticket> listTickets();
 
