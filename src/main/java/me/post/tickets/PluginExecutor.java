@@ -1,6 +1,7 @@
 package me.post.tickets;
 
 import me.post.tickets.command.HelpCommand;
+import me.post.tickets.command.ManageTicketsCommand;
 import me.post.tickets.command.ReloadCommand;
 import me.post.configlib.config.Updatables;
 import me.post.configlib.config.model.MenuModel;
@@ -10,6 +11,7 @@ import me.post.lib.config.wrapper.YamlConfigManager;
 import me.post.lib.util.Scheduler;
 import me.post.tickets.database.TicketRepository;
 import me.post.tickets.database.impl.CachedTicketRepository;
+import me.post.tickets.view.ManageTicketsView;
 import org.jetbrains.annotations.NotNull;
 import me.post.lib.command.process.CommandRegistry;
 import me.post.lib.view.Views;
@@ -39,7 +41,8 @@ public class PluginExecutor {
         Arrays
             .asList(
                 "config",
-                "resposta/mensagens", "resposta/sons", "resposta/efeitos"
+                "resposta/mensagens", "resposta/sons", "resposta/efeitos",
+                "menu/gerenciar_tickets"
             )
             .forEach(configManager::load);
     }
@@ -61,6 +64,7 @@ public class PluginExecutor {
         final CommandRegistry registry = CommandRegistry.on(plugin);
 
         registry.addModules(
+            new ManageTicketsCommand(),
             new ReloadCommand(configManager, updatables),
             new HelpCommand()
         );
@@ -70,7 +74,7 @@ public class PluginExecutor {
 
     private void registerViews() {
         Views.get().register(
-
+            new ManageTicketsView(menuModel("menu/gerenciar_tickets"), ticketRepository)
         );
     }
 

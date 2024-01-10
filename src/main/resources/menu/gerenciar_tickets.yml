@@ -1,0 +1,26 @@
+Nome: 'Tickets (@atual/@totais)'
+Linhas: 6
+Data:
+  Slots: [10,11,12,13,14,15,16, 19,20,21,22,23,24,25, 28,29,30,31,32,33,34]
+  Formato-linha-conteudo: '  &7@linha'
+  Display-ticket:
+    Nome: '&eTicket de @autor'
+    Lore:
+      - '&fAssunto: &7@assunto'
+      - '&fConteúdo:'
+      - '@@conteudo'
+      - ''
+      - '&7Há &f@tempo&7.'
+Conteudo:
+  Pagina-anterior:
+    Slot: 48
+    Material: INK_SACK
+    Data: 11
+    Nome: '&eAnterior'
+    Linhas: ''
+  Pagina-seguinte:
+    Slot: 48
+    Material: INK_SACK
+    Data: 11
+    Nome: '&eSeguinte'
+    Linhas: ''
