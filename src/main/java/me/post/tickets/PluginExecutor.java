@@ -1,9 +1,6 @@
 package me.post.tickets;
 
-import me.post.tickets.command.CreateTicketCommand;
-import me.post.tickets.command.HelpCommand;
-import me.post.tickets.command.ManageTicketsCommand;
-import me.post.tickets.command.ReloadCommand;
+import me.post.tickets.command.*;
 import me.post.configlib.config.Updatables;
 import me.post.configlib.config.model.MenuModel;
 import me.post.configlib.config.model.impl.FullReadMenuModel;
@@ -65,6 +62,7 @@ public class PluginExecutor {
         registry.addModules(
             new ManageTicketsCommand(),
             new CreateTicketCommand(ticketRepository),
+            new TicketInfoCommand(ticketRepository),
             new ReloadCommand(configManager, updatables),
             new HelpCommand()
         );
