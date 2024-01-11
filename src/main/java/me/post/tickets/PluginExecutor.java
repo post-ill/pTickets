@@ -1,5 +1,8 @@
 package me.post.tickets;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import me.post.lib.config.wrapper.ConfigWrapper;
 import me.post.tickets.command.*;
 import me.post.configlib.config.Updatables;
 import me.post.configlib.config.model.MenuModel;
@@ -8,8 +11,7 @@ import me.post.lib.config.wrapper.ConfigManager;
 import me.post.lib.config.wrapper.YamlConfigManager;
 import me.post.tickets.config.MainConfig;
 import me.post.tickets.database.TicketRepository;
-import me.post.tickets.database.impl.CachedTicketRepository;
-import me.post.tickets.database.model.Ticket;
+import me.post.tickets.database.impl.MongoDBTicketRepository;
 import me.post.tickets.ticket.TicketCreationDelay;
 import me.post.tickets.view.ManageTicketsView;
 import org.jetbrains.annotations.NotNull;
@@ -34,10 +36,12 @@ public class PluginExecutor {
         configManager = new YamlConfigManager(plugin);
         loadConfiguration();
 
+        final ConfigWrapper config = configManager.getWrapper("config");
         updatables = new Updatables();
-        mainConfig = updatables.include(new MainConfig(configManager.getWrapper("config")));
+        mainConfig = updatables.include(new MainConfig(config));
 
-        ticketRepository = new CachedTicketRepository();
+        final MongoClient client = MongoClients.create(config.unwrap().getString("MongoDB.Uri"));
+        ticketRepository = new MongoDBTicketRepository(client.getDatabase(config.unwrap().getString("MongoDB.Database")));
         ticketCreationDelay = new TicketCreationDelay(mainConfig);
     }
 

@@ -19,8 +19,7 @@ val projectFullName = "${project.name}-LATEST.jar";
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
     compileOnly("me.post.configlib:PostConfigLib:LATEST")
-    compileOnly("redis.clients:jedis:5.0.0")
-    compileOnly(files("/home/post/dev/bukkit-libs/GrandeMessager-LATEST.jar"))
+    implementation("org.mongodb:mongodb-driver-sync:4.11.1")
 }
 
 tasks.getByName<Test>("test") {

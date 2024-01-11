@@ -1,1 +1,4 @@
+MongoDB:
+  Uri: 'Sua uri'
+  Database: 'database'
 Criar-ticket-delay: 60
