@@ -6,8 +6,11 @@ import me.post.configlib.config.model.MenuModel;
 import me.post.configlib.config.model.impl.FullReadMenuModel;
 import me.post.lib.config.wrapper.ConfigManager;
 import me.post.lib.config.wrapper.YamlConfigManager;
+import me.post.tickets.config.MainConfig;
 import me.post.tickets.database.TicketRepository;
 import me.post.tickets.database.impl.CachedTicketRepository;
+import me.post.tickets.database.model.Ticket;
+import me.post.tickets.ticket.TicketCreationDelay;
 import me.post.tickets.view.ManageTicketsView;
 import org.jetbrains.annotations.NotNull;
 import me.post.lib.command.process.CommandRegistry;
@@ -21,7 +24,10 @@ public class PluginExecutor {
     private final @NotNull ConfigManager configManager;
     private final @NotNull Updatables updatables;
 
+    private final @NotNull MainConfig mainConfig;
+
     private final @NotNull TicketRepository ticketRepository;
+    private final @NotNull TicketCreationDelay ticketCreationDelay;
 
     public PluginExecutor(@NotNull JavaPlugin plugin) {
         this.plugin = plugin;
@@ -29,8 +35,10 @@ public class PluginExecutor {
         loadConfiguration();
 
         updatables = new Updatables();
+        mainConfig = updatables.include(new MainConfig(configManager.getWrapper("config")));
 
         ticketRepository = new CachedTicketRepository();
+        ticketCreationDelay = new TicketCreationDelay(mainConfig);
     }
 
     private void loadConfiguration() {
@@ -61,7 +69,7 @@ public class PluginExecutor {
 
         registry.addModules(
             new ManageTicketsCommand(),
-            new CreateTicketCommand(ticketRepository),
+            new CreateTicketCommand(ticketRepository, ticketCreationDelay),
             new TicketInfoCommand(ticketRepository),
             new CloseTicketCommand(ticketRepository),
             new ReloadCommand(configManager, updatables),
