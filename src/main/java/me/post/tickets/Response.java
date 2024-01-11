@@ -1,6 +1,5 @@
 package me.post.tickets;
 
-import com.grandemc.messager.GrandeMessager;
 import me.post.configlib.config.Updatables;
 import me.post.configlib.config.model.impl.EffectsModel;
 import me.post.configlib.config.model.impl.MessagesModel;
@@ -30,32 +29,6 @@ public class Response {
         messages = updatables.include(new MessagesModel(configManager.getWrapper("resposta/mensagens")));
         sounds = updatables.include(new SoundsModel(configManager.getWrapper("resposta/sons")));
         effects = updatables.include(new EffectsModel(configManager.getWrapper("resposta/efeitos")));
-    }
-
-    public static void serverRespond(
-        @Nullable String playerName,
-        @Nullable String key,
-        @NotNull Function<SubjectMessage, SubjectMessage> transformFunction
-    ) {
-        if (Bukkit.getPluginManager().getPlugin("GrandeMessager") == null) {
-            return;
-        }
-
-        if (key == null) {
-            return;
-        }
-
-        final SubjectMessage message = messages.data().getMessage(key);
-
-        if (message == null) {
-            return;
-        }
-
-        GrandeMessager.api().send(playerName, transformFunction.apply(message).color());
-    }
-
-    public static void serverRespond(@Nullable String playerName, @Nullable String key) {
-        serverRespond(playerName, key, Function.identity());
     }
 
     public static <T extends CommandSender> void respond(
