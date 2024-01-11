@@ -64,6 +64,7 @@ public class ManageTicketsView extends ContextView {
                         )))
                     )
                     .loreListFormat("@conteudo", prettifyContent(ticket.content(), 40, contentLineFormat))
+                    .colorMeta()
                     .transform(),
                 (ticket, click) -> {
                     final Ticket currentTicket = ticketRepository.findTicket(current ->
