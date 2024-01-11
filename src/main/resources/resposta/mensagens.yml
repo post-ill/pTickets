@@ -89,7 +89,7 @@ Reload: '&aConfigurações recarregadas'
 Ticket-inexistente: '&cEsse ticket não existe mais. Atualizando tickets...'
 Ticket-removido: '&aTicket removido com sucesso.'
 
-Criar-ticket-ajdua: '&cArgumentos invalidos. Digite /ticket <assunto> <duvida>'
+Criar-ticket-ajuda: '&cArgumentos invalidos. Digite /ticket <assunto> <duvida>'
 Criar-ticket-delay: '&eVocê pode criar um novo ticket dentro de @delay.'
 Criar-ticket-existente: '&eVocê já tem um ticket aberto. Digite &n/ticket info&e para mais informações.'
 Ticket-criado: '&aTicket com assunto &o"@assunto"&a criado com sucesso! Digite &n/ticket info&a para vê-o'
