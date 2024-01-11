@@ -11,6 +11,8 @@ Data:
       - '@@conteudo'
       - ''
       - '&7Há &f@tempo&7.'
+      - '&eB. direito: Se teleportar até o jogador'
+      - '&eB. esquerdo: Fechar ticket'
 Conteudo:
   Pagina-anterior:
     Slot: 48
