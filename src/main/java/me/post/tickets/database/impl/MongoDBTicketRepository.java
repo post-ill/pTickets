@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Predicate;
 
 import static com.mongodb.client.model.Filters.eq;
@@ -38,19 +39,23 @@ public class MongoDBTicketRepository implements TicketRepository {
 
     @Override
     public void addTicket(@NotNull Ticket ticket) {
-        mongoDb.getCollection(TICKETS_COLLECTION).insertOne(new Document()
-            .append("_id", new ObjectId())
-            .append("author", ticket.author())
-            .append("subject", ticket.subject())
-            .append("content", ticket.content())
-            .append("timestamp", ticket.timestamp())
+        CompletableFuture.runAsync(() ->
+            mongoDb.getCollection(TICKETS_COLLECTION).insertOne(new Document()
+                .append("_id", new ObjectId())
+                .append("author", ticket.author())
+                .append("subject", ticket.subject())
+                .append("content", ticket.content())
+                .append("timestamp", ticket.timestamp())
+            )
         );
         tickets.add(ticket);
     }
 
     @Override
     public void removeTicket(@NotNull Ticket ticket) {
-        mongoDb.getCollection(TICKETS_COLLECTION).deleteOne(eq("author", ticket.author()));
+        CompletableFuture.runAsync(() ->
+            mongoDb.getCollection(TICKETS_COLLECTION).deleteOne(eq("author", ticket.author()))
+        );
         tickets.remove(ticket);
     }
 
