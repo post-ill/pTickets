@@ -1,5 +1,7 @@
 package me.post.tickets;
 
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import me.post.lib.config.wrapper.ConfigWrapper;
@@ -40,7 +42,10 @@ public class PluginExecutor {
         updatables = new Updatables();
         mainConfig = updatables.include(new MainConfig(config));
 
-        final MongoClient client = MongoClients.create(config.unwrap().getString("MongoDB.Uri"));
+        final MongoClientSettings mongoSettings = MongoClientSettings.builder()
+            .applyConnectionString(new ConnectionString(config.unwrap().getString("MongoDB.Uri")))
+            .build();
+        final MongoClient client = MongoClients.create(mongoSettings);
         ticketRepository = new MongoDBTicketRepository(client.getDatabase(config.unwrap().getString("MongoDB.Database")));
         ticketCreationDelay = new TicketCreationDelay(mainConfig);
     }
