@@ -2,6 +2,7 @@ package me.post.tickets.command;
 
 import me.post.lib.command.CommandModule;
 import me.post.lib.command.annotation.Command;
+import me.post.lib.util.Time;
 import me.post.tickets.database.TicketRepository;
 import me.post.tickets.database.model.Ticket;
 import me.post.tickets.ticket.TicketCreationDelay;
@@ -40,7 +41,7 @@ public class CreateTicketCommand implements CommandModule {
 
         if (playerDelay > 0) {
             respond(sender, "Criar-ticket-delay", message -> message.replace(
-                to("@delay", Integer.toString(playerDelay))
+                to("@delay", Time.toFormat(playerDelay))
             ));
             return;
         }

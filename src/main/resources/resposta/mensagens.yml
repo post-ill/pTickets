@@ -80,15 +80,47 @@
 # * As mensagens são recarregadas por completo no reload.
 # * Pode mudar os tipos a vontade.
 # * O valor da placeholder não é afetado pelo tipo de mensagem. Pode utilizar qual você quiser.
+Comando-jogador: '&cVocê não pode executar esse comando pela console.'
+Comando-permissoes: '&cVocê não tem permissão para executar esse comando.'
+Jogador-offline: '&cO jogador @jogador não se encontra online.'
+
 Reload: '&aConfigurações recarregadas'
+
+Ticket-inexistente: '&cEsse ticket não existe mais. Atualizando tickets...'
+Ticket-removido: '&aTicket removido com sucesso.'
+
+Criar-ticket-ajdua: '&cArgumentos invalidos. Digite /ticket <assunto> <duvida>'
+Criar-ticket-delay: '&eVocê pode criar um novo ticket dentro de @delay.'
+Criar-ticket-existente: '&eVocê já tem um ticket aberto. Digite &n/ticket info&e para mais informações.'
+Ticket-criado: '&aTicket com assunto &o"@assunto"&a criado com sucesso! Digite &n/ticket info&a para vê-o'
+
+Ticket-info-inexistente: '&cVocê não tem nenhum ticket aberto.'
+Ticket-info:
+  - ''
+  - '&e&lTICKETS &fInformações sobre o seu ticket:'
+  - ' &8* &fAssunto: &7@assunto'
+  - ' &8* &fDúvida: &7@conteudo'
+  - ' &8* &fTempo: &7Há @tempo'
+  - ''
+
+Ticket-fechar-inexistente: '&cVocê não tem nenhum ticket para ser fechado.'
+Ticket-fechado: '&eTicket fechado!'
+
 Ajuda-staff:
   - ''
   - ' &e&lTICKETS &fLista de comandos &e&oSTAFF &f▾'
+  - ' &8• &e/ticket &7▶ &fCriar ticket'
+  - ' &8• &e/ticket info &7▶ &fMostrar a informação do seu ticket'
+  - ' &8• &e/ticket fechar &7▶ &fFechar ticket atual'
+  - ' &8• &e/tickets &7▶ &fAbrir menu de gerenciamento de tickets'
   - ' &8• &e/ticket reload &7▶ &fRecarregar configurações'
   - ' &8• &e/ticket ajuda &7▶ &fMostrar essa mensagem'
   - ''
 Ajuda:
   - ''
   - ' &e&lTICKETS &fLista de comandos ▾'
+  - ' &8• &e/ticket &7▶ &fCriar ticket'
+  - ' &8• &e/ticket info &7▶ &fMostrar a informação do seu ticket'
+  - ' &8• &e/ticket fechar &7▶ &fFechar ticket atual'
   - ' &8• &e/ticket ajuda &7▶ &fMostrar essa mensagem'
   - ''

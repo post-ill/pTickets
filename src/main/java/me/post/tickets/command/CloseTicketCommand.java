@@ -34,6 +34,6 @@ public class CloseTicketCommand implements CommandModule {
         }
 
         ticketRepository.removeTicket(ticket);
-        respond(sender, "Ticket-removido");
+        respond(sender, "Ticket-fechado");
     }
 }
